@@ -1,0 +1,54 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: restful-app
+  namespace: default
+  labels:
+    app: restful-app
+  annotations:
+    argocd.argoproj.io/sync-wave: "0"
+spec:
+  revisionHistoryLimit: 5
+  selector:
+    matchLabels:
+      app: restful-app
+  template:
+    metdata:
+      labels:
+        app: restful-app
+    spec:
+      containers:
+        - name: restful-app
+          image: restful-app
+          resources:
+            requests:
+              memory: "256Mi"
+              cpu: "250m"
+            limits:
+              memory: "512Mi"
+              cpu: "500m"
+          ports:
+            - containerPort: 3000
+          readinessProbe:
+            httpGet:
+              path: /v1/health
+              port: 3000
+            periodSeconds: 5
+            timeoutSeconds: 3
+            successThreshold: 1
+            failureThreshold: 4
+          livenessProbe:
+            httpGet:
+              path: /v1/health
+              port: 3000
+            periodSeconds: 5
+            timeoutSeconds: 3
+            successThreshold: 1
+            failureThreshold: 4
+          startupProbe:
+            httpGet:
+              path: /v1/health
+              port: 3000
+            periodSeconds: 10
+            failureThreshold: 90
+            
