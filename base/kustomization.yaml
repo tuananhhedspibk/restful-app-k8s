@@ -2,3 +2,14 @@ resources:
 - ./deployment.yaml
 - ./service.yaml
 - ./hpa.yaml
+- ./jobs/migration.yaml
+- ./cron-jobs/create-user-job.yaml
+
+configMapGenerator:
+- name: restful-app-env-variables
+generatorOptions:
+  annotations:
+    argocd.argoproj.io/hook: PreSync
+    argocd.argoproj.io/hook-delete-policy: BeforeHookCreation
+    argocd.argoproj.io/sync-wave: "1"
+  disableNameSuffixHash: true
