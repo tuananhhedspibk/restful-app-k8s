@@ -1,0 +1,17 @@
+apiVersion: batch/v1
+kind: CronJob
+metadata:
+  name: restful-app-create-user-job
+  labels:
+    app: restful-app-create-user-job
+spec:
+  schedule: "0 */1 * * *"
+  jobTemplate:
+    spec:
+      template:
+        spec:
+          serviceAccountName: restful-app-stg-sa
+          automountServiceAccountToken: true
+          containers:
+            - name: restful-app-create-user-job
+              command:
