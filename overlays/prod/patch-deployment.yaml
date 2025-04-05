@@ -1,0 +1,24 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: restful-app
+spec:
+  template:
+    metadata:
+      labels:
+        app: restful-app
+    spec:
+      serviceAccountName: restful-app-prod-sa
+      automountServiceAccountToken: true
+      containers:
+        - name: restful-app
+          command:
+            - node
+            - main.js
+          resources:
+            requests:
+              memory: "512Mi"
+              cpu: "20m"
+            limits:
+              memory: "1024Mi"
+              cpu: "40m"
