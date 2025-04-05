@@ -8,7 +8,7 @@ spec:
       labels:
         app: restful-app
     spec:
-      serviceAccountName: restful-app-prod-sa
+      serviceAccountName: restful-app-stg-sa
       automountServiceAccountToken: true
       containers:
         - name: restful-app
