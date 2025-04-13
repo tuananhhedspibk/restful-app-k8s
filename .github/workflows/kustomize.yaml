@@ -28,8 +28,7 @@ env:
 
 jobs:
   update-image:
-    runs-on:
-      labels: [resfulapp]
+    runs-on: self-host
     outputs:
       pr-url: ${{ steps.create-pr.outputs.pull-request-url }}
     steps:
