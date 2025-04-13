@@ -59,4 +59,12 @@ jobs:
           cd overlays/$ENV
           kustomize edit set image restful-app=$ECR_REGISTRY/$ECR_REPO/restful-app:$IMAGE_TAG
 
-          
+      - name: Create Pull Request
+        uses: peter-evans/create-pull-request@v5
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          title: "Kustomization Update of ${{ env.PRODUCT_NAME }} - ${{ env.ENV }} - ${{ env.IMAGE_TAG }}"
+          branch: ci/update-kustomization-${{ env.PRODUCT_NAME }}-${{ env.ENV }}-${{ env.IMAGE_TAG }}
+          commit-message: ":hammer: Update kustomization of ${{ env.PRODUCT_NAME }}-${{ env.ENV }}-${{ env.IMAGE_TAG }}"
+          base: main
+          labels: automerge
