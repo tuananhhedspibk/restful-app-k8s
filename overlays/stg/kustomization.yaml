@@ -10,4 +10,4 @@ patchesStrategicMerge:
 images:
 - name: restful-app
   newName: 265593583957.dkr.ecr.ap-northeast-1.amazonaws.com/restful-app/restful-app
-  newTag: cb52fbd062e7a3df4425398a7a1608864052710a
+  newTag: 54821cc03482668f45067f40781f59040cd4874e
