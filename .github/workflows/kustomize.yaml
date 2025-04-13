@@ -54,4 +54,9 @@ jobs:
           tar -xzf kustomize.tar.gz
           sudo mv kustomize /usr/local/bin
 
+      - name: Update Image Tag on separated ECR env
+        run: |
+          cd overlays/$ENV
+          ls -l
+
           
