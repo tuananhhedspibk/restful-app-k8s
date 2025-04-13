@@ -3,7 +3,6 @@ resources:
 - ./service.yaml
 - ./hpa.yaml
 - ./jobs/migration.yaml
-- ./cron-jobs/create-user-job.yaml
 
 configMapGenerator:
 - name: restful-app-env-variables
