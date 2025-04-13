@@ -60,6 +60,7 @@ jobs:
           kustomize edit set image restful-app=$ECR_REGISTRY/$ECR_REPO/restful-app:$IMAGE_TAG
 
       - name: Create Pull Request
+        id: cpr
         uses: peter-evans/create-pull-request@v5
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
@@ -68,3 +69,12 @@ jobs:
           commit-message: ":hammer: Update kustomization of ${{ env.PRODUCT_NAME }}-${{ env.ENV }}-${{ env.IMAGE_TAG }}"
           base: main
           labels: automerge
+
+      - name: Merge the PR
+        if: steps.cpr.outputs.pull-request-url != ''
+        env:
+          GH_TOKEN: ${{ secrets.GH_PAT }}
+        run: |
+          pr_number=$(echo "${{ steps.cpr.outputs.pull-request-url }}" | sed 's/.*\/pull\///')
+          echo "Merging PR #$pr_number"
+          gh pr merge "$pr_number" --squash --delete-branch --yes
