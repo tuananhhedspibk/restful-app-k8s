@@ -7,3 +7,7 @@ resources:
 patchesStrategicMerge:
   - patch-deployment.yaml
   - patch-hpa.yaml
+images:
+  - name: restful-app
+    newName: 265593583957.dkr.ecr.ap-northeast-1.amazonaws.com
+    newTag: cb52fbd062e7a3df4425398a7a16088640527333
