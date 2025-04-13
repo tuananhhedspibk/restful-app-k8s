@@ -28,9 +28,7 @@ env:
 
 jobs:
   update-image:
-    runs-on: self-hosted
-    outputs:
-      pr-url: ${{ steps.create-pr.outputs.pull-request-url }}
+    runs-on: ubuntu-latest
     steps:
       - name: Checkout files
         uses: actions/checkout@v4
