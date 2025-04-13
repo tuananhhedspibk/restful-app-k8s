@@ -1,0 +1,60 @@
+name: Kustomize
+run-name: Update Kustomize for ${{ inputs.product_name }} in ${{ inputs.env }}
+
+on:
+  workflow_dispatch:
+    inputs:
+      product_name:
+        description: "Product name"
+        required: true
+      image_tag:
+        description: "Image tag"
+        required: true
+      ecr_registry:
+        description: "ECR registry"
+        required: true
+      ecr_repo:
+        description: "ECR Repo"
+        required: true
+      env:
+        description: "Environment to deploy to. (stg/prod)"
+
+env:
+  PRODUCT_NAME: ${{ github.event.inputs.product_name }}
+  IMAGE_TAG: ${{ github.event.inputs.image_tag }}
+  ENV: ${{ github.event.inputs.env }}
+  ECR_REGISTRY: ${{ github.event.inputs.ecr_registry }}
+  ECR_REPO: ${{ github.event.inputs.ecr_repo }}
+
+jobs:
+  update-image:
+    runs-on:
+      labels: [resfulapp]
+    outputs:
+      pr-url: ${{ steps.create-pr.outputs.pull-request-url }}
+    steps:
+      - name: Checkout files
+        uses: actions/checkout@v4
+
+      - name: Set steps summary
+        run: |
+          echo "### Triggering Event"                                      >> $GITHUB_STEP_SUMMARY
+          echo "| Var | Value |"                                           >> $GITHUB_STEP_SUMMARY
+          echo "|:--|:--|"                                                 >> $GITHUB_STEP_SUMMARY
+          echo "| event_name  | ${{ github.event_name }} |"                >> $GITHUB_STEP_SUMMARY
+          echo "### Environment Variables"                                 >> $GITHUB_STEP_SUMMARY
+          echo "| Var | Value |"                                           >> $GITHUB_STEP_SUMMARY
+          echo "|:--|:--|"                                                 >> $GITHUB_STEP_SUMMARY
+          echo "| PRODUCT_NAME | ${{ github.event.inputs.product_name }}"  >> $GITHUB_STEP_SUMMARY
+          echo "| IMAGE_TAG | ${{ github.event.inputs.image_tag }}"        >> $GITHUB_STEP_SUMMARY
+          echo "| ENV | ${{ github.event.inputs.env }}"                    >> $GITHUB_STEP_SUMMARY
+          echo "| ECR_REGISTRY | ${{ github.event.inputs.ecr_registry }}"  >> $GITHUB_STEP_SUMMARY
+          echo "| ECR_REPO | ${{ github.event.inputs.ecr_repo }}"          >> $GITHUB_STEP_SUMMARY
+
+      - name: Install kustomize
+        run: |
+          curl -sLo kustomize.tar.gz https://github.com/kubernetes-sigs/kustomize/releases/download/kustomize/v5.3.0/kustomize_v5.3.0_linux_amd64.tar.gz
+          tar -xzf kustomize.tar.gz
+          sudo mv kustomize /usr/local/bin
+
+          
