@@ -58,6 +58,8 @@ jobs:
         run: |
           cd overlays/$ENV
           kustomize edit set image restful-app=$ECR_REGISTRY/$ECR_REPO/restful-app:$IMAGE_TAG
+          cd .
+          rm kustomize.tar.gz
 
       - name: Create Pull Request
         id: cpr
