@@ -13,13 +13,13 @@ spec:
     matchLabels:
       app: restful-app
   template:
-    metdata:
+    metadata:
       labels:
         app: restful-app
     spec:
       containers:
         - name: restful-app
-          image: restful-app
+          image: trantuananh/restful-app:latest
           resources:
             requests:
               memory: "256Mi"
@@ -29,6 +29,9 @@ spec:
               cpu: "500m"
           ports:
             - containerPort: 3000
+          envFrom:
+            - configMapRef:
+                name: restful-app-config
           readinessProbe:
             httpGet:
               path: /v1/health

@@ -1,0 +1,11 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: restful-app-config
+data:
+  DATABASE_HOST: "host.docker.internal"
+  DATABASE_PORT: "5432"
+  DATABASE_USERNAME: "user"
+  DATABASE_PASSWORD: "password"
+  NODE_ENV: "dev"
+  DATABASE_NAME: "rest_app"
