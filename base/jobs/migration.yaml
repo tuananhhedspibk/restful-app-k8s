@@ -19,7 +19,11 @@ spec:
     spec:
       containers:
       - name: restful-app-migration
-        image: restful-app
+        image: trantuananh/restful-app:latest
         securityContext:
           allowPrivilegeEscalation: false
+        envFrom:
+          - configMapRef:
+              name: restful-app-config
+        command: ["npm", "run", "migration:run"]
       restartPolicy: Never
