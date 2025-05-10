@@ -36,22 +36,22 @@ spec:
             httpGet:
               path: /v1/health
               port: 3000
-            periodSeconds: 8
-            timeoutSeconds: 5
+            periodSeconds: 10
+            timeoutSeconds: 15
             successThreshold: 1
-            failureThreshold: 4
+            failureThreshold: 5
           livenessProbe:
             httpGet:
               path: /v1/health
               port: 3000
-            periodSeconds: 8
-            timeoutSeconds: 5
+            periodSeconds: 10
+            timeoutSeconds: 15
             successThreshold: 1
-            failureThreshold: 4
+            failureThreshold: 5
           startupProbe:
             httpGet:
               path: /v1/health
               port: 3000
-            periodSeconds: 15
-            failureThreshold: 90
+            periodSeconds: 10
+            failureThreshold: 100
             
