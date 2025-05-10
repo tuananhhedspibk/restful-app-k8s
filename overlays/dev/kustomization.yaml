@@ -3,6 +3,8 @@ kind: Kustomization
 
 resources:
   - ../../base
+  - db-sfs.yaml
+  - db-svc.yaml
 
 configMapGenerator:
   - name: restful-app-config
