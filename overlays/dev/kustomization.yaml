@@ -11,7 +11,10 @@ configMapGenerator:
 generatorOptions:
   disableNameSuffixHash: true
 
-patchesStrategicMerge:
-  - patch-deployment.yaml
-  - patch-hpa.yaml
-  - patch-migration.yaml
+patches:
+  - path: patch-deployment.yaml
+    target:
+      kind: Deployment
+      name: restful-app
+  - path: patch-hpa.yaml
+  - path: patch-migration.yaml
