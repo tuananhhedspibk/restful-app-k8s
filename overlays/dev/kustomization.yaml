@@ -5,6 +5,7 @@ resources:
   - ../../base
   - db-sfs.yaml
   - db-svc.yaml
+  - service-account.yaml
 
 configMapGenerator:
   - name: restful-app-config
