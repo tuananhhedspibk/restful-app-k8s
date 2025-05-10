@@ -3,6 +3,9 @@ kind: Deployment
 metadata:
   name: restful-app
 spec:
+  selector:
+    matchLabels:
+      app: restful-app
   template:
     metadata:
       labels:
