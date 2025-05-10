@@ -2,9 +2,12 @@ resources:
 - ./deployment.yaml
 - ./service.yaml
 - ./hpa.yaml
+- ./migration.yaml
 
 configMapGenerator:
-- name: restful-app-env-variables
+  - name: restful-app-config
+  - envs:
+    - config.env
 generatorOptions:
   annotations:
     argocd.argoproj.io/hook: PreSync
