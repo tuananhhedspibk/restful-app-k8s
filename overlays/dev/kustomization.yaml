@@ -6,6 +6,7 @@ resources:
 
 configMapGenerator:
   - name: restful-app-config
+    behavior: replace
     envs:
       - config.env
 generatorOptions:
