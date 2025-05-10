@@ -1,7 +1,8 @@
 configMapGenerator:
   - name: restful-app-config
-  - envs:
-    - config.env
+    envs:
+      - config.env
+
 generatorOptions:
   annotations:
     argocd.argoproj.io/hook: PreSync
