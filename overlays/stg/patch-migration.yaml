@@ -7,26 +7,28 @@ metadata:
 spec:
   backoffLimit: 1
   template:
-    metadata:
-      labels:
-        app: restful-app-migration
-      annotations:
-        sidecar.istio.io/inject: "false"
-        argocd.argoproj.io/sync-wave: "1"
     spec:
+      serviceAccountName: restful-app-stg-sa
+      automountServiceAccountToken: true
       containers:
       - name: restful-app-migration
-        securityContext:
-          allowPrivilegeEscalation: false
+        command: ["npm", "run", "migration:run"]
+        resources:
+          requests:
+            memory: "256Mi"
+            cpu: "10m"
+          limits:
+            memory: "512Mi"
+            cpu: "20m"
         envFrom:
           - configMapRef:
               name: restful-app-config
+          - secretRef:
+              name: app-secrets
         volumeMounts:
           - mountPath: /secrets
             name: app-secrets
             readOnly: true
-        command: ["npm", "run", "migration:run"]
-      restartPolicy: Never
       
       volumes:
         - name: app-secrets
