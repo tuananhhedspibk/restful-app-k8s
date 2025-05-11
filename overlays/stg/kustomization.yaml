@@ -3,6 +3,7 @@ kind: Kustomization
 
 resources:
   - ../../base
+  - namespace.yaml
   - service-account.yaml
   - secret-provider-class.yaml
 
