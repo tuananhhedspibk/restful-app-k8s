@@ -7,7 +7,7 @@ metadata:
 spec:
   template:
     spec:
-      # serviceAccountName: restful-app-stg-sa
+      serviceAccountName: restful-app-stg-sa
       automountServiceAccountToken: true
       containers:
       - name: restful-app-migration
