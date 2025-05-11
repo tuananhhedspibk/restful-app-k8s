@@ -4,6 +4,8 @@ metadata:
   name: restful-app-migration
   labels:
     app: restful-app-migration
+  annotations:
+    argocd.argoproj.io/sync-wave: "1"
 spec:
   template:
     spec:
