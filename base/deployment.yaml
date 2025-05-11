@@ -19,7 +19,6 @@ spec:
     spec:
       containers:
         - name: restful-app
-          image: trantuananh/restful-app:latest
           resources:
             requests:
               memory: "256Mi"
