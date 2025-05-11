@@ -2,7 +2,7 @@ apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
   name: restful-app
-  namespace: argocd
+  namespace: restful-stg
 spec:
   project: default
   source:
