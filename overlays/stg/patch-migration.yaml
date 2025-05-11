@@ -15,11 +15,22 @@ spec:
     spec:
       containers:
       - name: restful-app-migration
-        image: trantuananh/restful-app:latest
         securityContext:
           allowPrivilegeEscalation: false
         envFrom:
           - configMapRef:
               name: restful-app-config
+        volumeMounts:
+          - mountPath: /secrets
+            name: app-secrets
+            readOnly: true
         command: ["npm", "run", "migration:run"]
       restartPolicy: Never
+      
+      volumes:
+        - name: app-secrets
+          csi:
+            driver: secrets-store.csi.k8s.io
+            readOnly: true
+            volumeAttributes:
+              secretProviderClass: restful-app-secrets
