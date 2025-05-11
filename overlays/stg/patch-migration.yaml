@@ -5,10 +5,9 @@ metadata:
   labels:
     app: restful-app-migration
 spec:
-  backoffLimit: 1
   template:
     spec:
-      serviceAccountName: restful-app-stg-sa
+      # serviceAccountName: restful-app-stg-sa
       automountServiceAccountToken: true
       containers:
       - name: restful-app-migration
