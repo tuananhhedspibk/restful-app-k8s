@@ -4,6 +4,7 @@ kind: Kustomization
 resources:
   - ../../base
   - service-account.yaml
+  - secret-provider-class.yaml
 
 configMapGenerator:
   - name: restful-app-config
@@ -16,7 +17,9 @@ generatorOptions:
 patchesStrategicMerge:
 - patch-deployment.yaml
 - patch-hpa.yaml
+
+namespace: restful-stg
 images:
-- name: restful-app
-  newName: 265593583957.dkr.ecr.ap-northeast-1.amazonaws.com/restful-app/restful-app
-  newTag: 4bbcc1c72ca0a6da120c003b1e4bc05f3c89a146
+  - name: restful-app
+    newName: 265593583957.dkr.ecr.ap-northeast-1.amazonaws.com/restful-app/restful-app
+    newTag: 4bbcc1c72ca0a6da120c003b1e4bc05f3c89a146
