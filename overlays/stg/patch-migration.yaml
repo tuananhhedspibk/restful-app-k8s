@@ -2,6 +2,7 @@ apiVersion: batch/v1
 kind: Job
 metadata:
   name: restful-app-migration
+  namespace: restful-stg
   labels:
     app: restful-app-migration
   annotations:
