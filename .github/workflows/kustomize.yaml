@@ -79,4 +79,4 @@ jobs:
         run: |
           pr_number=$(echo "${{ steps.cpr.outputs.pull-request-url }}" | sed 's/.*\/pull\///')
           echo "Merging PR #$pr_number"
-          gh pr merge "$pr_number" --squash --delete-branch
+          gh pr merge "$pr_number" --delete-branch
