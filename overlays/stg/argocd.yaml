@@ -8,7 +8,7 @@ spec:
   source:
     repoURL: https://github.com/tuananhhedspibk/restful-app-k8s
     targetRevision: HEAD
-    path: overlays/dev
+    path: overlays/stg
   destination:
     server: 'https://kubernetes.default.svc'
     namespace: default
