@@ -17,7 +17,7 @@ spec:
         - name: restful-app
           command:
             - node
-            - main.js
+            - dist/src/main
           resources:
             requests:
               memory: "512Mi"
