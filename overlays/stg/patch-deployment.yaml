@@ -25,3 +25,20 @@ spec:
             limits:
               memory: "1024Mi"
               cpu: "40m"
+          envFrom:
+            - configMapRef:
+                name: restful-app-config
+            - secretRef:
+                name: app-secrets
+          volumeMounts:
+            - mountPath: /secrets
+              name: app-secrets
+              readOnly: true
+          
+      volumes:
+        - name: app-secrets
+          csi:
+            driver: secrets-store.csi.k8s.io
+            readOnly: true
+            volumeAttributes:
+              secretProviderClass: restful-app-secrets
