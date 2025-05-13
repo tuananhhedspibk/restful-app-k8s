@@ -23,5 +23,5 @@ patchesStrategicMerge:
 namespace: restful-stg
 images:
 - name: restful-app
-  newName: 265593583957.dkr.ecr.ap-northeast-1.amazonaws.com/restful-app/restful-app
+  newName: 265593583957.dkr.ecr.ap-northeast-1.amazonaws.com/restful-app
   newTag: 4bbcc1c72ca0a6da120c003b1e4bc05f3c89a146
