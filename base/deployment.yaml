@@ -19,6 +19,7 @@ spec:
     spec:
       containers:
         - name: restful-app
+          image: restful-app
           resources:
             requests:
               memory: "256Mi"
