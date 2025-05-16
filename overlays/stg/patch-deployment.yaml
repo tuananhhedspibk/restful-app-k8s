@@ -30,3 +30,15 @@ spec:
                 name: restful-app-config
             - secretRef:
                 name: app-secrets
+          volumeMounts:
+            - mountPath: /secrets
+              name: app-secrets-inline
+              readOnly: true
+          
+      volumes:
+        - name: app-secrets-inline
+          csi:
+            driver: secrets-store.csi.k8s.io
+            readOnly: true
+            volumeAttributes:
+              secretProviderClass: restful-app-secrets
