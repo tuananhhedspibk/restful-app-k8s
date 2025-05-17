@@ -2,10 +2,10 @@ apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
 
 resources:
-  - ../../base
-  - namespace.yaml
-  - service-account.yaml
-  - secret-provider-class.yaml
+- ../../base
+- namespace.yaml
+- service-account.yaml
+- secret-provider-class.yaml
 
 configMapGenerator:
 - behavior: replace
@@ -23,5 +23,5 @@ patchesStrategicMerge:
 namespace: restful-stg
 images:
 - name: restful-app
-  newName: 265593583957.dkr.ecr.ap-northeast-1.amazonaws.com/restful-app
-  newTag: 4bbcc1c72ca0a6da120c003b1e4bc05f3c89a146
+  newName: 265593583957.dkr.ecr.ap-northeast-1.amazonaws.com/restful-app/restful-app
+  newTag: 5aed599dcc02c2f03929372fcdd1f0033d7a6e11
