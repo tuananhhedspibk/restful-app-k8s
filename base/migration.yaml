@@ -15,6 +15,7 @@ spec:
     spec:
       containers:
       - name: restful-app-migration
+        image: restful-app
         securityContext:
           allowPrivilegeEscalation: false
       restartPolicy: Never
