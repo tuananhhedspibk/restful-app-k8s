@@ -57,7 +57,7 @@ jobs:
       - name: Update Image Tag on separated ECR env
         run: |
           cd overlays/$ENV
-          kustomize edit set image restful-app=$ECR_REGISTRY/$ECR_REPO/restful-app:$IMAGE_TAG
+          kustomize edit set image restful-app=$ECR_REGISTRY/$ECR_REPO:$IMAGE_TAG
           cd ../..
           rm -f kustomize.tar.gz
 
