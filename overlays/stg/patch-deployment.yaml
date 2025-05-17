@@ -30,3 +30,11 @@ spec:
                 name: restful-app-config
             - secretRef:
                 name: app-secrets
+          
+      volumes:
+        - name: secrets-store
+          csi:
+            driver: secrets-store.csi.k8s.io
+            readOnly: true
+            volumeAttributes:
+              secretProviderClass: restful-app-secrets
