@@ -27,12 +27,12 @@ spec:
           - secretRef:
               name: app-secrets
         volumeMounts:
-          - mountPath: /secrets
-            name: app-secrets
+          - name: secrets-store
+            mountPath: "/mnt/secrets-store"
             readOnly: true
-      
+          
       volumes:
-        - name: app-secrets
+        - name: secrets-store
           csi:
             driver: secrets-store.csi.k8s.io
             readOnly: true
