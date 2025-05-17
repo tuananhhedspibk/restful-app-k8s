@@ -30,6 +30,10 @@ spec:
                 name: restful-app-config
             - secretRef:
                 name: app-secrets
+          volumeMounts:
+            - name: secrets-store-inline
+              mountPath: "/mnt/secrets-store"
+              readOnly: true
           
       volumes:
         - name: secrets-store
