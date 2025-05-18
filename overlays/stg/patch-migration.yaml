@@ -10,24 +10,27 @@ spec:
       serviceAccountName: restful-app-stg-sa
       automountServiceAccountToken: true
       containers:
-      - name: restful-app-migration
-        command: ["npm", "run", "migration:run"]
-        resources:
-          requests:
-            memory: "256Mi"
-            cpu: "10m"
-          limits:
-            memory: "512Mi"
-            cpu: "20m"
-        envFrom:
-          - configMapRef:
-              name: restful-app-config
-          - secretRef:
-              name: app-secrets
-        volumeMounts:
-          - name: secrets-store
-            mountPath: "/mnt/secrets-store"
-            readOnly: true
+        - name: restful-app-migration
+          command:
+            - npm
+            - run
+            - migration:run
+          resources:
+            requests:
+              memory: "256Mi"
+              cpu: "10m"
+            limits:
+              memory: "512Mi"
+              cpu: "20m"
+          envFrom:
+            - configMapRef:
+                name: restful-app-config
+            - secretRef:
+                name: app-secrets
+          volumeMounts:
+            - name: secrets-store
+              mountPath: "/mnt/secrets-store"
+              readOnly: true
           
       volumes:
         - name: secrets-store
