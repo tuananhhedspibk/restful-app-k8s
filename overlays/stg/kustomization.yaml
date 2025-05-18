@@ -6,6 +6,7 @@ resources:
 - namespace.yaml
 - service-account.yaml
 - secret-provider-class.yaml
+- ingress.yaml
 
 configMapGenerator:
 - behavior: replace
