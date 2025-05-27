@@ -6,7 +6,7 @@ metadata:
   annotations:
     nginx.ingress.kubernetes.io/rewrite-target: /
 spec:
-  ingressClassName: alb
+  ingressClassName: nginx
   rules:
     - host: restful-app.com
       http:
@@ -17,6 +17,6 @@ spec:
               service:
                 name: restful-app
                 port:
-                  number: 3000
+                  number: 80
 
     
