@@ -8,7 +8,7 @@ metadata:
 spec:
   ingressClassName: nginx
   rules:
-    - host: restful-app.com
+    - host: nestjs.restful-app.com
       http:
         paths:
           - path: /
