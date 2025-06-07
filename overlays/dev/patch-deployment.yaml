@@ -15,6 +15,7 @@ spec:
       automountServiceAccountToken: true
       containers:
         - name: restful-app
+          image: trantuananh/restful-app
           command:
             - node
             - dist/src/main
